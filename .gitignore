@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/ChronoBot/bin/Debug/netcoreapp2.0
+/ChronoBot/obj
