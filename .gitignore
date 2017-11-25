@@ -5,3 +5,9 @@
 /.vs
 /ChronoBot/bin/Debug/netcoreapp2.0
 /ChronoBot/obj
+/ChronoBot/bin/Debug
+/ChronoBot/ClientId.txt
+/ChronoBot/ChronoBot.csproj.user
+/ChronoBot/Credentials.json
+/ChronoBot.Internals/bin/Debug/netcoreapp2.0
+/ChronoBot.Internals/obj
