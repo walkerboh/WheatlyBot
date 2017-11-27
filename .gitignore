@@ -11,3 +11,5 @@
 /ChronoBot/Credentials.json
 /ChronoBot.Internals/bin/Debug/netcoreapp2.0
 /ChronoBot.Internals/obj
+/ChronoBot/bin/Release
+/ChronoBot/Properties/PublishProfiles
