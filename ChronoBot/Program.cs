@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using ChronoBot.Common.Setup;
 using ChronoBot.Entities;
 using ChronoBot.Modules.ChronoGG;
+using ChronoBot.Services;
 using Discord.Commands;
 using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
@@ -54,6 +55,7 @@ namespace ChronoBot
                 .AddSingleton(client)
                 .AddSingleton(commands)
                 .AddSingleton<ChronoGGService>()
+                .AddTransient<LocalStorage>()
                 .BuildServiceProvider();
 
             await commands.AddModulesAsync(Assembly.GetEntryAssembly());

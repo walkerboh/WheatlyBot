@@ -44,6 +44,8 @@ namespace ChronoBot.Modules.ChronoGG
                 ChronoGGService.AutoSaleChannels.TryAdd(channelId, true);
                 await ReplyAsync("Channel added to automatic sale notifications.");
             }
+
+            await ChronoGGService.WriteChannelIds();
         }
 
         [ChronoCommand]

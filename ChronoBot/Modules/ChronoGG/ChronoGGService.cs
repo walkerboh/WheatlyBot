@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using ChronoBot.Entities.ChronoGG;
 using ChronoBot.Services;
@@ -10,19 +12,36 @@ namespace ChronoBot.Modules.ChronoGG
 {
     public class ChronoGGService
     {
-        private DiscordSocketClient Client { get; set; }
+        public Sale Sale { get; set; }
+
+        private DiscordSocketClient client;
+
+        private LocalStorage localStorage;
 
         public ConcurrentDictionary<ulong, bool> AutoSaleChannels { get; } = new ConcurrentDictionary<ulong, bool>();
 
-        public Sale Sale { get; set; }
-
-        public ILogger Logger = LogManager.GetCurrentClassLogger();
+        private ILogger logger = LogManager.GetCurrentClassLogger();
 
         private readonly int[] apiDelay = new int[] { 0, 60, 180, 300 };
 
-        public ChronoGGService(DiscordSocketClient client)
+        private const string DATA_FILE_NAME = "ChronoGGSaleChannels";
+
+        public ChronoGGService(DiscordSocketClient client, LocalStorage localStorage)
         {
-            Client = client;
+            this.client = client;
+            this.localStorage = localStorage;
+
+            List<ulong> channelIds = localStorage.ReadData<List<ulong>>(DATA_FILE_NAME).Result;
+
+            if (channelIds != null && channelIds.Any())
+            {
+                foreach (ulong channelId in channelIds)
+                {
+                    AutoSaleChannels.TryAdd(channelId, true);
+                }
+            }
+
+            logger.Info("{0} channel ids loaded for ChronoGGService", channelIds?.Count ?? 0);
         }
 
         public void StartService()
@@ -53,25 +72,34 @@ namespace ChronoBot.Modules.ChronoGG
 
             Task.Delay(Sale.EndDate.ToUniversalTime() - DateTime.UtcNow).ContinueWith((_) => { RunSaleNotifcation(); }).ConfigureAwait(false);
 
-            Logger.Info("Sale retrieved and notification scheduled.");
+            logger.Info("Sale retrieved and notification scheduled.");
         }
 
         private async Task RunSaleNotifcation()
         {
             await GetSale();
 
-            foreach (ulong channelId in AutoSaleChannels.Keys)
+            foreach (ulong channelId in AutoSaleChannels.Keys.ToList())
             {
-                var channel = Client.GetChannel(channelId) as ISocketMessageChannel;
+                var channel = client.GetChannel(channelId) as ISocketMessageChannel;
 
-                if (channel is null) return;
+                if (channel is null)
+                    AutoSaleChannels.Remove(channelId, out bool _);
 
                 await channel.SendMessageAsync(string.Empty, false, Sale.ToEmbed());
             }
 
             Task.Delay(Sale.EndDate.ToUniversalTime() - DateTime.UtcNow).ContinueWith((_) => { RunSaleNotifcation(); }).ConfigureAwait(false);
 
-            Logger.Info("Sale retrieved and next notification scheduled.");
+            logger.Info("Sale retrieved and next notification scheduled.");
+
+            await WriteChannelIds();
+        }
+
+        public async Task WriteChannelIds()
+        {
+            List<ulong> channelIds = AutoSaleChannels.Keys.ToList();
+            await localStorage.WriteData(channelIds, DATA_FILE_NAME);
         }
     }
 }
