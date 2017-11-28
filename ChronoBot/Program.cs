@@ -2,13 +2,14 @@
 using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
+using ChronoBot.Common.Setup;
+using ChronoBot.Entities;
 using ChronoBot.Modules.ChronoGG;
 using Discord.Commands;
 using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using NLog.Extensions.Logging;
+using NLog;
 
 namespace ChronoBot
 {
@@ -20,16 +21,18 @@ namespace ChronoBot
         private CommandService commands;
         private IServiceProvider services;
 
-        private ILogger logger;
+        private Logger logger;
 
         public async Task MainAsync()
         {
+            LoggerSetup.SetupLog();
+
             client = new DiscordSocketClient();
             commands = new CommandService();
 
             await InstallCommandsAsync();
 
-            logger = services.GetService<ILogger<Program>>();
+            logger = LogManager.GetCurrentClassLogger();
 
             string token = JsonConvert.DeserializeObject<Credentials>(File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), "Credentials.json"))).Token;
             await client.LoginAsync(Discord.TokenType.Bot, token);
@@ -38,7 +41,7 @@ namespace ChronoBot
             var chronoGGService = services.GetService<ChronoGGService>();
             chronoGGService.StartService();
 
-            logger.LogDebug("Bot running at {0}", DateTime.Now);
+            logger.Debug("Bot running at {0}", DateTime.Now);
 
             await Task.Delay(-1);
         }
@@ -51,18 +54,7 @@ namespace ChronoBot
                 .AddSingleton(client)
                 .AddSingleton(commands)
                 .AddSingleton<ChronoGGService>()
-                .AddSingleton<ILoggerFactory, LoggerFactory>()
-                .AddSingleton(typeof(ILogger<>), typeof(Logger<>))
-                .AddLogging((builder) => builder.SetMinimumLevel(LogLevel.Trace))
                 .BuildServiceProvider();
-            
-            ILoggerFactory loggerFactory = services.GetRequiredService<ILoggerFactory>();
-
-            loggerFactory.AddNLog(new NLogProviderOptions { CaptureMessageTemplates = true, CaptureMessageProperties = true });
-
-            // TODO: fix this garbage (debug/release)
-            //loggerFactory.ConfigureNLog("../../../../nlog.config");
-            loggerFactory.ConfigureNLog("nlog.config");
 
             await commands.AddModulesAsync(Assembly.GetEntryAssembly());
         }

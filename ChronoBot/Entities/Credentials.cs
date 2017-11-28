@@ -1,4 +1,4 @@
-﻿namespace ChronoBot
+﻿namespace ChronoBot.Entities
 {
     class Credentials
     {
