@@ -22,7 +22,7 @@ namespace ChronoBot.Modules.ChronoGG
 
         private ILogger logger = LogManager.GetCurrentClassLogger();
 
-        private readonly int[] apiDelay = new int[] { 0, 60, 180, 300 };
+        private readonly int[] apiDelay = new int[] { 0, 5, 30, 60, 180, 300 };
 
         private const string DATA_FILE_NAME = "ChronoGGSaleChannels";
 
@@ -51,17 +51,26 @@ namespace ChronoBot.Modules.ChronoGG
 
         private async Task GetSale()
         {
+            if (IsOldSale(Sale)) Sale = null;
+
             int delayIndex = 0;
             Sale newSale = null;
 
-            while (newSale is null)
+            while (newSale is null || IsOldSale(newSale))
             {
                 await Task.Delay(apiDelay[delayIndex] * 1000);
 
                 newSale = await new ChronoGGAPI().GetCurrentSaleAsync();
+
+                delayIndex = Math.Min(delayIndex + 1, apiDelay.Length);
             }
 
             Sale = newSale;
+
+            bool IsOldSale(Sale sale)
+            {
+                return sale == null || sale.EndDate < DateTime.Now;
+            }
         }
 
         private async Task SetupSale()
@@ -70,7 +79,9 @@ namespace ChronoBot.Modules.ChronoGG
 
             var diff = Sale.EndDate.ToUniversalTime() - DateTime.UtcNow;
 
-            Task.Delay(Sale.EndDate.ToUniversalTime() - DateTime.UtcNow).ContinueWith((_) => { RunSaleNotifcation(); }).ConfigureAwait(false);
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+            Task.Run(() => Task.Delay(Sale.EndDate.ToUniversalTime() - DateTime.UtcNow).ContinueWith((_) => { RunSaleNotifcation(); })).ConfigureAwait(false);
+#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
 
             logger.Info("Sale retrieved and notification scheduled.");
         }
@@ -89,7 +100,9 @@ namespace ChronoBot.Modules.ChronoGG
                 await channel.SendMessageAsync(string.Empty, false, Sale.ToEmbed());
             }
 
-            Task.Delay(Sale.EndDate.ToUniversalTime() - DateTime.UtcNow).ContinueWith((_) => { RunSaleNotifcation(); }).ConfigureAwait(false);
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+            Task.Run(() => Task.Delay(Sale.EndDate.ToUniversalTime() - DateTime.UtcNow).ContinueWith((_) => { RunSaleNotifcation(); })).ConfigureAwait(false);
+#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
 
             logger.Info("Sale retrieved and next notification scheduled.");
 
