@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using Discord;
 using Newtonsoft.Json;
 
@@ -51,13 +50,36 @@ namespace ChronoBot.Entities.ChronoGG
             embed.WithTitle($"{Name}")
                 .WithUrl(UniqueUrl)
                 .WithImageUrl(PromoImage)
-                .AddInlineField("Name", Name)
                 .AddInlineField("Sale Price", SalePrice)
                 .AddInlineField("Original Price", NormalPrice)
                 .AddInlineField("Discount", Discount)
-                .WithFooter($"Sale ends {EndDate.ToLocalTime().ToString("M/d/yy H:mm K")}");
+                .AddInlineField("Platforms", CleanPlatforms(Platforms))
+                .WithFooter($"Sale ends {EndDate.ToUniversalTime().ToString("M/d/yy H:mm K")}");
 
             return embed.Build();
+        }
+
+        private object CleanPlatforms(string[] platforms)
+        {
+            List<string> cleanedStrings = new List<string>();
+
+            foreach (string platform in platforms)
+            {
+                switch (platform)
+                {
+                    case "windows":
+                        cleanedStrings.Add("Windows");
+                        break;
+                    case "macos":
+                        cleanedStrings.Add("MacOS");
+                        break;
+                    case "linux":
+                        cleanedStrings.Add("Linux");
+                        break;
+                }
+            }
+
+            return String.Join(", ", cleanedStrings);
         }
     }
 }
