@@ -4,6 +4,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using ChronoBot.Common.Setup;
 using ChronoBot.Entities;
+using ChronoBot.Extensions;
 using ChronoBot.Modules.ChronoGG;
 using ChronoBot.Services;
 using Discord.Commands;
@@ -34,6 +35,8 @@ namespace ChronoBot
             await InstallCommandsAsync();
 
             logger = LogManager.GetCurrentClassLogger();
+
+            client.Log += Log;
 
             string token = JsonConvert.DeserializeObject<Credentials>(File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), "Credentials.json"))).Token;
             await client.LoginAsync(Discord.TokenType.Bot, token);
@@ -75,6 +78,12 @@ namespace ChronoBot
             IResult result = await commands.ExecuteAsync(context, argPos, services);
             if (!result.IsSuccess)
                 Console.WriteLine(result.ErrorReason);
+        }
+
+        private Task Log(Discord.LogMessage logMessage)
+        {
+            logger.Log(logMessage.Severity.ToNLogLevel(), logMessage.Exception, logMessage.Message);
+            return Task.CompletedTask;
         }
     }
 }
