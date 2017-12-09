@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
@@ -20,7 +21,8 @@ namespace ChronoBot.Common.Setup
             {
                 FileName = Path.Combine(Directory.GetCurrentDirectory(), "logs", "log.log"),
                 Layout = @"${date}|${level:uppercase=true}|${message} ${exception}|${logger}|${all-event-properties}",
-                ArchiveEvery = FileArchivePeriod.Day
+                ArchiveEvery = FileArchivePeriod.Day,
+                ArchiveFileName = Path.Combine(Directory.GetCurrentDirectory(), "logs", DateTime.Now.ToString("yyyyMMdd") + ".log")
             };
 
             configuration.AddTarget("Console", console);
