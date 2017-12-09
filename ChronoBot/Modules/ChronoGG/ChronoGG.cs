@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using ChronoBot.Common;
 using Discord.Commands;
 using NLog;
@@ -61,6 +62,17 @@ namespace ChronoBot.Modules.ChronoGG
             {
                 await ReplyAsync("Channel is not receiving sale notifications.");
             }
+        }
+
+        [ChronoCommand]
+        public async Task Shop(int index = 0)
+        {
+            if (ChronoGGService.Shop is null)
+                await ReplyAsync("The shop has not been loaded. Please try again later.");
+            else if (index == 0)
+                await ReplyAsync(string.Join(Environment.NewLine + Environment.NewLine, ChronoGGService.Shop.CurrentItems.GetItemList()));
+            else
+                await ReplyAsync(string.Empty, false, ChronoGGService.Shop.GetShopItemByDisplayIndex(index).ToEmbed());
         }
     }
 }

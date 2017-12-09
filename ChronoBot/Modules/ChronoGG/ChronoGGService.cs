@@ -12,13 +12,17 @@ namespace ChronoBot.Modules.ChronoGG
 {
     public class ChronoGGService
     {
-        public Sale Sale { get; set; }
+        public Sale Sale { get; private set; }
+
+        public Shop Shop { get; private set; }
+
+        public ConcurrentDictionary<ulong, bool> AutoSaleChannels { get; } = new ConcurrentDictionary<ulong, bool>();
 
         private DiscordSocketClient client;
 
         private LocalStorage localStorage;
 
-        public ConcurrentDictionary<ulong, bool> AutoSaleChannels { get; } = new ConcurrentDictionary<ulong, bool>();
+        private ChronoGGAPI chronoGGAPI;
 
         private ILogger logger = LogManager.GetCurrentClassLogger();
 
@@ -26,10 +30,11 @@ namespace ChronoBot.Modules.ChronoGG
 
         private const string DATA_FILE_NAME = "ChronoGGSaleChannels";
 
-        public ChronoGGService(DiscordSocketClient client, LocalStorage localStorage)
+        public ChronoGGService(DiscordSocketClient client, LocalStorage localStorage, ChronoGGAPI chronoGGAPI)
         {
             this.client = client;
             this.localStorage = localStorage;
+            this.chronoGGAPI = chronoGGAPI;
 
             List<ulong> channelIds = localStorage.ReadData<List<ulong>>(DATA_FILE_NAME).Result;
 
@@ -47,6 +52,7 @@ namespace ChronoBot.Modules.ChronoGG
         public void StartService()
         {
             Task.Run(SetupSale);
+            Task.Run(UpdateShop);
         }
 
         private async Task GetSale()
@@ -60,7 +66,7 @@ namespace ChronoBot.Modules.ChronoGG
             {
                 await Task.Delay(apiDelay[delayIndex] * 1000);
 
-                newSale = await new ChronoGGAPI().GetCurrentSaleAsync();
+                newSale = await chronoGGAPI.GetCurrentSaleAsync();
 
                 delayIndex = Math.Min(delayIndex + 1, apiDelay.Length);
             }
@@ -107,6 +113,27 @@ namespace ChronoBot.Modules.ChronoGG
             logger.Info("Sale retrieved and next notification scheduled.");
 
             await WriteChannelIds();
+        }
+
+        private async Task UpdateShop()
+        {
+            int delayIndex = 0;
+            Shop newShop = null;
+
+            while (newShop is null)
+            {
+                await Task.Delay(apiDelay[delayIndex] * 1000);
+
+                newShop = await chronoGGAPI.GetShopAsync();
+
+                delayIndex = Math.Min(delayIndex + 1, apiDelay.Length);
+            }
+
+            Shop = newShop;
+
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+            Task.Run(() => Task.Delay(new TimeSpan(6, 0, 0)).ContinueWith((_) => UpdateShop())).ConfigureAwait(false);
+#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
         }
 
         public async Task WriteChannelIds()

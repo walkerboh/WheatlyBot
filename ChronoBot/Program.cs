@@ -59,6 +59,7 @@ namespace ChronoBot
                 .AddSingleton(commands)
                 .AddSingleton<ChronoGGService>()
                 .AddTransient<LocalStorage>()
+                .AddTransient<ChronoGGAPI>()
                 .BuildServiceProvider();
 
             await commands.AddModulesAsync(Assembly.GetEntryAssembly());

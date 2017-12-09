@@ -12,7 +12,9 @@ namespace ChronoBot.Services
     {
         public ILogger<ChronoGGAPI> Logger { get; set; }
 
-        private readonly string SaleURI = @"https://api.chrono.gg/sale";
+        private const string SaleURI = @"https://api.chrono.gg/sale";
+
+        private const string ShopURI = @"https://api.chrono.gg/shop";
 
         public async Task<Sale> GetCurrentSaleAsync()
         {
@@ -28,6 +30,23 @@ namespace ChronoBot.Services
             }
 
             return sale;
+        }
+
+        public async Task<Shop> GetShopAsync()
+        {
+            Shop shop = null;
+
+            try
+            {
+                IEnumerable<ShopItem> items = await REST.Get<IEnumerable<ShopItem>>(ShopURI);
+                shop = new Shop(items);
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex, "Error in ChronoGGAPI.GetShopAsync");
+            }
+
+            return shop;
         }
     }
 }
