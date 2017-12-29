@@ -1,0 +1,14 @@
+C:\Users\walke\source\repos\WheatlyBot\WheatlyBot\bin\Debug\netcoreapp2.0\win10-x64\hostpolicy.dll
+C:\Users\walke\source\repos\WheatlyBot\WheatlyBot\bin\Debug\netcoreapp2.0\win10-x64\hostfxr.dll
+C:\Users\walke\source\repos\WheatlyBot\WheatlyBot\bin\Debug\netcoreapp2.0\win10-x64\WheatlyBot.exe
+C:\Users\walke\source\repos\WheatlyBot\WheatlyBot\bin\Debug\netcoreapp2.0\win10-x64\WheatlyBot.deps.json
+C:\Users\walke\source\repos\WheatlyBot\WheatlyBot\bin\Debug\netcoreapp2.0\win10-x64\WheatlyBot.runtimeconfig.json
+C:\Users\walke\source\repos\WheatlyBot\WheatlyBot\bin\Debug\netcoreapp2.0\win10-x64\WheatlyBot.runtimeconfig.dev.json
+C:\Users\walke\source\repos\WheatlyBot\WheatlyBot\bin\Debug\netcoreapp2.0\win10-x64\WheatlyBot.dll
+C:\Users\walke\source\repos\WheatlyBot\WheatlyBot\bin\Debug\netcoreapp2.0\win10-x64\WheatlyBot.pdb
+C:\Users\walke\source\repos\WheatlyBot\WheatlyBot\obj\Debug\netcoreapp2.0\win10-x64\WheatlyBot.csprojResolveAssemblyReference.cache
+C:\Users\walke\source\repos\WheatlyBot\WheatlyBot\obj\Debug\netcoreapp2.0\win10-x64\WheatlyBot.csproj.CoreCompileInputs.cache
+C:\Users\walke\source\repos\WheatlyBot\WheatlyBot\obj\Debug\netcoreapp2.0\win10-x64\WheatlyBot.AssemblyInfoInputs.cache
+C:\Users\walke\source\repos\WheatlyBot\WheatlyBot\obj\Debug\netcoreapp2.0\win10-x64\WheatlyBot.AssemblyInfo.cs
+C:\Users\walke\source\repos\WheatlyBot\WheatlyBot\obj\Debug\netcoreapp2.0\win10-x64\WheatlyBot.dll
+C:\Users\walke\source\repos\WheatlyBot\WheatlyBot\obj\Debug\netcoreapp2.0\win10-x64\WheatlyBot.pdb
