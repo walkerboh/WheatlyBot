@@ -6,7 +6,7 @@ using NLog;
 
 namespace WheatlyBot.Modules.ChronoGG
 {
-    [Group]
+    [Group("chrono")]
     public class ChronoGG : ModuleBase<SocketCommandContext>
     {
         private ChronoGGService ChronoGGService { get; set; }
@@ -19,18 +19,13 @@ namespace WheatlyBot.Modules.ChronoGG
         }
 
         [ChronoCommand]
-        public async Task Hello()
-        {
-            await ReplyAsync($"Hello {Context.Message.Author.Username}!");
-        }
-
-        [ChronoCommand]
         public async Task Sale()
         {
             await ReplyAsync(ChronoGGService.Sale is null ? "The current sale has not yet been retrieved. Please try again later." : string.Empty, false, ChronoGGService.Sale?.ToEmbed());
         }
 
         [ChronoCommand]
+        [RequireUserPermission(Discord.GuildPermission.ManageGuild | Discord.GuildPermission.ManageChannels)]
         public async Task AutoSale()
         {
             ulong channelId = Context.Channel.Id;
