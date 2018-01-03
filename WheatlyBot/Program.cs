@@ -72,7 +72,7 @@ namespace WheatlyBot
 
             int argPos = 0;
 
-            if (!message.HasCharPrefix('!', ref argPos)) return;
+            if (!message.HasCharPrefix('$', ref argPos)) return;
 
             SocketCommandContext context = new SocketCommandContext(client, message);
 

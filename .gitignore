@@ -3,14 +3,16 @@
 ################################################################################
 
 /.vs
-/ChronoBot/bin/Debug/netcoreapp2.0
-/ChronoBot/obj
-/ChronoBot/bin/Debug
-/ChronoBot/ClientId.txt
-/ChronoBot/ChronoBot.csproj.user
-/ChronoBot/Credentials.json
-/ChronoBot.Internals/bin/Debug/netcoreapp2.0
-/ChronoBot.Internals/obj
-/ChronoBot/bin/Release
-/ChronoBot/Properties/PublishProfiles
-/ChronoBot/logs
+/WheatlyBot/bin/Debug/netcoreapp2.0
+/WheatlyBot/obj
+/WheatlyBot/bin/Debug
+/WheatlyBot/ClientId.txt
+/WheatlyBot/ChronoBot.csproj.user
+/WheatlyBot/Credentials.json
+/WheatlyBot.Internals/bin/Debug/netcoreapp2.0
+/WheatlyBot.Internals/obj
+/WheatlyBot/bin/Release
+/WheatlyBot/Properties/PublishProfiles
+/WheatlyBot/logs
+/WheatlyBot/Credentials.json
+/WheatlyBot/logs
