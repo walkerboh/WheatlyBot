@@ -7541,7 +7541,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\walke\\.nuget\\packages\\": {},
+    "C:\\Users\\Evan\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
@@ -7550,17 +7550,17 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\Users\\walke\\source\\repos\\WheatlyBot\\WheatlyBot\\WheatlyBot.csproj",
+      "projectUniqueName": "D:\\Development\\ChronoBot\\WheatlyBot\\WheatlyBot.csproj",
       "projectName": "WheatlyBot",
-      "projectPath": "C:\\Users\\walke\\source\\repos\\WheatlyBot\\WheatlyBot\\WheatlyBot.csproj",
-      "packagesPath": "C:\\Users\\walke\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\walke\\source\\repos\\WheatlyBot\\WheatlyBot\\obj\\",
+      "projectPath": "D:\\Development\\ChronoBot\\WheatlyBot\\WheatlyBot.csproj",
+      "packagesPath": "C:\\Users\\Evan\\.nuget\\packages\\",
+      "outputPath": "D:\\Development\\ChronoBot\\WheatlyBot\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\walke\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Evan\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

@@ -3,16 +3,12 @@
 ################################################################################
 
 /.vs
-/WheatlyBot/bin/Debug/netcoreapp2.0
+/WheatlyBot/bin
 /WheatlyBot/obj
-/WheatlyBot/bin/Debug
 /WheatlyBot/ClientId.txt
-/WheatlyBot/ChronoBot.csproj.user
+/WheatlyBot/WheatlyBot.csproj.user
 /WheatlyBot/Credentials.json
 /WheatlyBot.Internals/bin/Debug/netcoreapp2.0
 /WheatlyBot.Internals/obj
-/WheatlyBot/bin/Release
 /WheatlyBot/Properties/PublishProfiles
-/WheatlyBot/logs
-/WheatlyBot/Credentials.json
 /WheatlyBot/logs
