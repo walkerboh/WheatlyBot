@@ -44,7 +44,7 @@ namespace WheatlyBot.Entities.ChronoGG
 
         public ShopItem GetShopItemByDisplayIndex(int index)
         {
-            return shopItems.ElementAt(index - 1);
+            return shopItems.ElementAtOrDefault(index - 1);
         }
     }
 }
