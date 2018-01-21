@@ -62,8 +62,12 @@ namespace WheatlyBot.Modules.ChronoGG
             int delayIndex = 0;
             Sale newSale = null;
 
+            newSale = await chronoGGAPI.GetCurrentSaleAsync();
+            
             while (newSale is null || IsOldSale(newSale))
             {
+                logger.Warn($"New sale not retrieved. (Old sale found: ${IsOldSale(newSale)}");
+                
                 await Task.Delay(apiDelay[delayIndex] * 1000);
 
                 newSale = await chronoGGAPI.GetCurrentSaleAsync();
@@ -98,12 +102,10 @@ namespace WheatlyBot.Modules.ChronoGG
 
             foreach (ulong channelId in AutoSaleChannels.Keys.ToList())
             {
-                var channel = client.GetChannel(channelId) as ISocketMessageChannel;
-
-                if (channel is null)
+                if (!(client.GetChannel(channelId) is ISocketMessageChannel channel))
                     AutoSaleChannels.Remove(channelId, out bool _);
-
-                await channel.SendMessageAsync(string.Empty, false, Sale.ToEmbed());
+                else
+                    await channel.SendMessageAsync(string.Empty, false, Sale.ToEmbed());
             }
 
 #pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed

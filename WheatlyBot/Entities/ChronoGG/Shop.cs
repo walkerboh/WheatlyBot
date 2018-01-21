@@ -36,7 +36,7 @@ namespace WheatlyBot.Entities.ChronoGG
 
             foreach (ShopItem item in shopItems)
             {
-                list.Add(string.Format("{0}: {1} - {2:n0} Coins ({3:0.00%} claimed)", index++, item.Name, item.Price, item.Claimed));
+                list.Add($"{index++}: {item.Name} - {item.Price:n0} Coins ({item.Claimed:0.00%} claimed)");
             }
 
             return list;

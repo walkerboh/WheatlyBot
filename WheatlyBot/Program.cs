@@ -15,9 +15,9 @@ using NLog;
 
 namespace WheatlyBot
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args) => new Program().MainAsync().GetAwaiter().GetResult();
+        private static void Main(string[] args) => new Program().MainAsync().GetAwaiter().GetResult();
 
         private DiscordSocketClient client;
         private CommandService commands;
@@ -25,7 +25,7 @@ namespace WheatlyBot
 
         private Logger logger;
 
-        public async Task MainAsync()
+        private async Task MainAsync()
         {
             LoggerSetup.SetupLog();
 
@@ -67,8 +67,7 @@ namespace WheatlyBot
 
         private async Task MessageReceived(SocketMessage messageParam)
         {
-            SocketUserMessage message = messageParam as SocketUserMessage;
-            if (message == null) return;
+            if (!(messageParam is SocketUserMessage message)) return;
 
             int argPos = 0;
 

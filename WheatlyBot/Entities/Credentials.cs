@@ -1,6 +1,6 @@
 ﻿namespace WheatlyBot.Entities
 {
-    class Credentials
+    internal class Credentials
     {
         public string Token { get; set; }
     }
