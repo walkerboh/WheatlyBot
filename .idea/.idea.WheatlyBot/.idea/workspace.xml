@@ -1,0 +1,584 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="fe747105-6b3e-4dfb-a6b6-12b6ff522c6a" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/.idea.WheatlyBot/.idea/contentModel.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/.idea.WheatlyBot/.idea/indexLayout.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/.idea.WheatlyBot/.idea/modules.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/.idea.WheatlyBot/.idea/vcs.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/.idea.WheatlyBot/.idea/workspace.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/.idea.WheatlyBot/riderModule.iml" />
+    </list>
+    <ignored path=".idea/.idea.WheatlyBot/.idea/" />
+    <ignored path=".idea/.idea.WheatlyBot/riderModule.iml" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
+      <file leaf-file-name="Program.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WheatlyBot/Program.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="841">
+              <caret line="29" column="35" lean-forward="false" selection-start-line="29" selection-start-column="35" selection-end-line="29" selection-end-column="35" />
+              <folding>
+                <marker date="1516556842833" expanded="true" signature="6:366" ph="..." />
+                <marker date="1516556842833" expanded="true" signature="388:2748" ph="{...}" />
+                <marker date="1516556842833" expanded="true" signature="417:2746" ph="{...}" />
+                <marker date="1516556842833" expanded="true" signature="727:1496" ph="{...}" />
+                <marker date="1516556842833" expanded="true" signature="1547:2003" ph="{...}" />
+                <marker date="1516556842833" expanded="true" signature="2075:2523" ph="{...}" />
+                <marker date="1516556842833" expanded="true" signature="2580:2740" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ChronoGGAPI.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WheatlyBot/Services/ChronoGGAPI.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="348">
+              <caret line="18" column="32" lean-forward="false" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
+              <folding>
+                <marker date="1514510296506" expanded="false" signature="6:193" ph="..." />
+                <marker date="1514510296506" expanded="true" signature="224:1278" ph="{...}" />
+                <marker date="1514510296506" expanded="true" signature="255:1276" ph="{...}" />
+                <marker date="1514510296506" expanded="true" signature="515:832" ph="{...}" />
+                <marker date="1514510296506" expanded="true" signature="572:654" ph="{...}" />
+                <marker date="1514510296506" expanded="true" signature="687:796" ph="{...}" />
+                <marker date="1514510296506" expanded="true" signature="880:1270" ph="{...}" />
+                <marker date="1514510296506" expanded="true" signature="937:1099" ph="{...}" />
+                <marker date="1514510296506" expanded="true" signature="1132:1234" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ChronoGG.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WheatlyBot/Modules/ChronoGG/ChronoGG.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <marker date="1515109003893" expanded="false" signature="6:140" ph="..." />
+                <marker date="1515109003893" expanded="true" signature="179:2818" ph="{...}" />
+                <marker date="1515109003893" expanded="true" signature="264:2816" ph="{...}" />
+                <marker date="1515109003893" expanded="true" signature="459:526" ph="{...}" />
+                <marker date="1515109003893" expanded="true" signature="585:793" ph="{...}" />
+                <marker date="1515109003893" expanded="true" signature="966:1566" ph="{...}" />
+                <marker date="1515109003893" expanded="true" signature="1100:1299" ph="{...}" />
+                <marker date="1515109003893" expanded="true" signature="1316:1502" ph="{...}" />
+                <marker date="1515109003893" expanded="true" signature="1631:2008" ph="{...}" />
+                <marker date="1515109003893" expanded="true" signature="1765:1871" ph="{...}" />
+                <marker date="1515109003893" expanded="true" signature="1888:1998" ph="{...}" />
+                <marker date="1515109003893" expanded="true" signature="2080:2810" ph="{...}" />
+                <marker date="1515109003893" expanded="true" signature="2416:2800" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ChronoGGService.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WheatlyBot/Modules/ChronoGG/ChronoGGService.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1149">
+              <caret line="91" column="22" lean-forward="false" selection-start-line="91" selection-start-column="22" selection-end-line="91" selection-end-column="22" />
+              <folding>
+                <marker date="1516556678616" expanded="false" signature="6:233" ph="..." />
+                <marker date="1516556678616" expanded="true" signature="272:5221" ph="{...}" />
+                <marker date="1516556678616" expanded="true" signature="307:5219" ph="{...}" />
+                <marker date="1516556678616" expanded="true" signature="992:1568" ph="{...}" />
+                <marker date="1516556678616" expanded="true" signature="1280:1462" ph="{...}" />
+                <marker date="1516556678616" expanded="true" signature="1350:1448" ph="{...}" />
+                <marker date="1516556678616" expanded="true" signature="1604:1691" ph="{...}" />
+                <marker date="1516556678616" expanded="true" signature="1729:2505" ph="{...}" />
+                <marker date="1516556678616" expanded="true" signature="1986:2331" ph="{...}" />
+                <marker date="1516556678616" expanded="true" signature="2545:3178" ph="{...}" />
+                <marker date="1516556678616" expanded="true" signature="3227:4194" ph="{...}" />
+                <marker date="1516556678616" expanded="true" signature="3339:3631" ph="{...}" />
+                <marker date="1516556678616" expanded="true" signature="4235:5009" ph="{...}" />
+                <marker date="1516556678616" expanded="true" signature="4347:4572" ph="{...}" />
+                <marker date="1516556678616" expanded="true" signature="5054:5213" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/WheatlyBot/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/WheatlyBot/Entities/ChronoGG/Shop.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/WheatlyBot/Entities/ChronoGG/Sale.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/WheatlyBot/Services/ChronoGGAPI.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/WheatlyBot/Common/WheatlyCommandAttribute.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/WheatlyBot/Common/REST.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/WheatlyBot/Modules/ChronoGG/ChronoGG.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/WheatlyBot/Modules/ChronoGG/ChronoGGService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/WheatlyBot/Entities/Credentials.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/WheatlyBot/Entities/ChronoGG/ShopItem.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/WheatlyBot/Entities/ChronoGG/ChronoGGItem.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/WheatlyBot/Program.cs" />
+        <option value="$PROJECT_DIR$/WheatlyBot/Modules/ChronoGG/ChronoGGService.cs" />
+        <option value="$PROJECT_DIR$/WheatlyBot/Entities/ChronoGG/Sale.cs" />
+        <option value="$PROJECT_DIR$/WheatlyBot/Entities/ChronoGG/Shop.cs" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="920" />
+    <option name="y" value="540" />
+    <option name="width" value="1400" />
+    <option name="height" value="1000" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>CoffeeScript</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="SolutionExplorer" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="SolutionExplorer">
+        <subPane>
+          <expand>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="WheatlyBot (1 project)" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="WheatlyBot (1 project)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="WheatlyBot" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+        <option name="show-all-items" value="false" />
+      </pane>
+      <pane id="Scratches" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="Inspections-C#" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="Default" type="DotNetProject" factoryName=".NET Project">
+      <option name="EXE_PATH" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <envs />
+      <option name="USE_MONO" value="0" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="PROJECT_PATH" value="" />
+      <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
+      <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
+      <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
+      <option name="PROJECT_KIND" value="None" />
+      <option name="PROJECT_TFM" value="" />
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fe747105-6b3e-4dfb-a6b6-12b6ff522c6a" name="Default" comment="" />
+      <created>1516483648891</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1516483648891</updated>
+      <workItem from="1516483652053" duration="217000" />
+      <workItem from="1516555278228" duration="1669000" />
+      <workItem from="1517958456806" duration="291000" />
+    </task>
+    <task id="LOCAL-00001" summary="Fixed some code inspecions and added extra logging">
+      <created>1516556909435</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1516556909436</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="2177000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-13" y="-13" width="3266" height="2106" extended-state="6" />
+    <layout>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Errors In Solution" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Unit Tests" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18581259" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="NuGet" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11851852" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Fixed some code inspecions and added extra logging" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed some code inspecions and added extra logging" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="2" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/WheatlyBot/Program.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="841">
+          <caret line="29" column="35" lean-forward="false" selection-start-line="29" selection-start-column="35" selection-end-line="29" selection-end-column="35" />
+          <folding>
+            <marker date="1516556842833" expanded="true" signature="6:366" ph="..." />
+            <marker date="1516556842833" expanded="true" signature="388:2748" ph="{...}" />
+            <marker date="1516556842833" expanded="true" signature="417:2746" ph="{...}" />
+            <marker date="1516556842833" expanded="true" signature="727:1496" ph="{...}" />
+            <marker date="1516556842833" expanded="true" signature="1547:2003" ph="{...}" />
+            <marker date="1516556842833" expanded="true" signature="2075:2523" ph="{...}" />
+            <marker date="1516556842833" expanded="true" signature="2580:2740" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WheatlyBot/Services/ChronoGGAPI.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="348">
+          <caret line="18" column="32" lean-forward="false" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
+          <folding>
+            <marker date="1514510296506" expanded="false" signature="6:193" ph="..." />
+            <marker date="1514510296506" expanded="true" signature="224:1278" ph="{...}" />
+            <marker date="1514510296506" expanded="true" signature="255:1276" ph="{...}" />
+            <marker date="1514510296506" expanded="true" signature="515:832" ph="{...}" />
+            <marker date="1514510296506" expanded="true" signature="572:654" ph="{...}" />
+            <marker date="1514510296506" expanded="true" signature="687:796" ph="{...}" />
+            <marker date="1514510296506" expanded="true" signature="880:1270" ph="{...}" />
+            <marker date="1514510296506" expanded="true" signature="937:1099" ph="{...}" />
+            <marker date="1514510296506" expanded="true" signature="1132:1234" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WheatlyBot/Modules/ChronoGG/ChronoGG.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1515109003893" expanded="false" signature="6:140" ph="..." />
+            <marker date="1515109003893" expanded="true" signature="179:2818" ph="{...}" />
+            <marker date="1515109003893" expanded="true" signature="264:2816" ph="{...}" />
+            <marker date="1515109003893" expanded="true" signature="459:526" ph="{...}" />
+            <marker date="1515109003893" expanded="true" signature="585:793" ph="{...}" />
+            <marker date="1515109003893" expanded="true" signature="966:1566" ph="{...}" />
+            <marker date="1515109003893" expanded="true" signature="1100:1299" ph="{...}" />
+            <marker date="1515109003893" expanded="true" signature="1316:1502" ph="{...}" />
+            <marker date="1515109003893" expanded="true" signature="1631:2008" ph="{...}" />
+            <marker date="1515109003893" expanded="true" signature="1765:1871" ph="{...}" />
+            <marker date="1515109003893" expanded="true" signature="1888:1998" ph="{...}" />
+            <marker date="1515109003893" expanded="true" signature="2080:2810" ph="{...}" />
+            <marker date="1515109003893" expanded="true" signature="2416:2800" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WheatlyBot/Modules/ChronoGG/ChronoGGService.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2059">
+          <caret line="79" column="17" lean-forward="false" selection-start-line="79" selection-start-column="17" selection-end-line="79" selection-end-column="17" />
+          <folding>
+            <marker date="1516556678616" expanded="false" signature="6:233" ph="..." />
+            <marker date="1516556678616" expanded="true" signature="272:5221" ph="{...}" />
+            <marker date="1516556678616" expanded="true" signature="307:5219" ph="{...}" />
+            <marker date="1516556678616" expanded="true" signature="992:1568" ph="{...}" />
+            <marker date="1516556678616" expanded="true" signature="1280:1462" ph="{...}" />
+            <marker date="1516556678616" expanded="true" signature="1350:1448" ph="{...}" />
+            <marker date="1516556678616" expanded="true" signature="1604:1691" ph="{...}" />
+            <marker date="1516556678616" expanded="true" signature="1729:2505" ph="{...}" />
+            <marker date="1516556678616" expanded="true" signature="1986:2331" ph="{...}" />
+            <marker date="1516556678616" expanded="true" signature="2545:3178" ph="{...}" />
+            <marker date="1516556678616" expanded="true" signature="3227:4194" ph="{...}" />
+            <marker date="1516556678616" expanded="true" signature="3339:3631" ph="{...}" />
+            <marker date="1516556678616" expanded="true" signature="4235:5009" ph="{...}" />
+            <marker date="1516556678616" expanded="true" signature="4347:4572" ph="{...}" />
+            <marker date="1516556678616" expanded="true" signature="5054:5213" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WheatlyBot/Program.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1516556842833" expanded="true" signature="6:366" ph="..." />
+            <marker date="1516556842833" expanded="true" signature="388:2748" ph="{...}" />
+            <marker date="1516556842833" expanded="true" signature="417:2746" ph="{...}" />
+            <marker date="1516556842833" expanded="true" signature="727:1496" ph="{...}" />
+            <marker date="1516556842833" expanded="true" signature="1547:2003" ph="{...}" />
+            <marker date="1516556842833" expanded="true" signature="2075:2523" ph="{...}" />
+            <marker date="1516556842833" expanded="true" signature="2580:2740" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WheatlyBot/Entities/Credentials.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WheatlyBot/Common/REST.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="870">
+          <caret line="33" column="57" lean-forward="true" selection-start-line="33" selection-start-column="57" selection-end-line="33" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WheatlyBot/Common/WheatlyCommandAttribute.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WheatlyBot/Program.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="841">
+          <caret line="29" column="35" lean-forward="false" selection-start-line="29" selection-start-column="35" selection-end-line="29" selection-end-column="35" />
+          <folding>
+            <marker date="1516556842833" expanded="true" signature="6:366" ph="..." />
+            <marker date="1516556842833" expanded="true" signature="388:2748" ph="{...}" />
+            <marker date="1516556842833" expanded="true" signature="417:2746" ph="{...}" />
+            <marker date="1516556842833" expanded="true" signature="727:1496" ph="{...}" />
+            <marker date="1516556842833" expanded="true" signature="1547:2003" ph="{...}" />
+            <marker date="1516556842833" expanded="true" signature="2075:2523" ph="{...}" />
+            <marker date="1516556842833" expanded="true" signature="2580:2740" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WheatlyBot/Modules/ChronoGG/ChronoGG.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1515109003893" expanded="false" signature="6:140" ph="..." />
+            <marker date="1515109003893" expanded="true" signature="179:2818" ph="{...}" />
+            <marker date="1515109003893" expanded="true" signature="264:2816" ph="{...}" />
+            <marker date="1515109003893" expanded="true" signature="459:526" ph="{...}" />
+            <marker date="1515109003893" expanded="true" signature="585:793" ph="{...}" />
+            <marker date="1515109003893" expanded="true" signature="966:1566" ph="{...}" />
+            <marker date="1515109003893" expanded="true" signature="1100:1299" ph="{...}" />
+            <marker date="1515109003893" expanded="true" signature="1316:1502" ph="{...}" />
+            <marker date="1515109003893" expanded="true" signature="1631:2008" ph="{...}" />
+            <marker date="1515109003893" expanded="true" signature="1765:1871" ph="{...}" />
+            <marker date="1515109003893" expanded="true" signature="1888:1998" ph="{...}" />
+            <marker date="1515109003893" expanded="true" signature="2080:2810" ph="{...}" />
+            <marker date="1515109003893" expanded="true" signature="2416:2800" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WheatlyBot/Services/ChronoGGAPI.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="348">
+          <caret line="18" column="32" lean-forward="false" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
+          <folding>
+            <marker date="1514510296506" expanded="false" signature="6:193" ph="..." />
+            <marker date="1514510296506" expanded="true" signature="224:1278" ph="{...}" />
+            <marker date="1514510296506" expanded="true" signature="255:1276" ph="{...}" />
+            <marker date="1514510296506" expanded="true" signature="515:832" ph="{...}" />
+            <marker date="1514510296506" expanded="true" signature="572:654" ph="{...}" />
+            <marker date="1514510296506" expanded="true" signature="687:796" ph="{...}" />
+            <marker date="1514510296506" expanded="true" signature="880:1270" ph="{...}" />
+            <marker date="1514510296506" expanded="true" signature="937:1099" ph="{...}" />
+            <marker date="1514510296506" expanded="true" signature="1132:1234" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WheatlyBot/Entities/ChronoGG/ChronoGGItem.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WheatlyBot/Entities/ChronoGG/Sale.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1149">
+          <caret line="55" column="89" lean-forward="true" selection-start-line="55" selection-start-column="89" selection-end-line="55" selection-end-column="89" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WheatlyBot/Entities/ChronoGG/Shop.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="754">
+          <caret line="27" column="13" lean-forward="true" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WheatlyBot/Entities/ChronoGG/ShopItem.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WheatlyBot/Modules/ChronoGG/ChronoGGService.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1149">
+          <caret line="91" column="22" lean-forward="false" selection-start-line="91" selection-start-column="22" selection-end-line="91" selection-end-column="22" />
+          <folding>
+            <marker date="1516556678616" expanded="false" signature="6:233" ph="..." />
+            <marker date="1516556678616" expanded="true" signature="272:5221" ph="{...}" />
+            <marker date="1516556678616" expanded="true" signature="307:5219" ph="{...}" />
+            <marker date="1516556678616" expanded="true" signature="992:1568" ph="{...}" />
+            <marker date="1516556678616" expanded="true" signature="1280:1462" ph="{...}" />
+            <marker date="1516556678616" expanded="true" signature="1350:1448" ph="{...}" />
+            <marker date="1516556678616" expanded="true" signature="1604:1691" ph="{...}" />
+            <marker date="1516556678616" expanded="true" signature="1729:2505" ph="{...}" />
+            <marker date="1516556678616" expanded="true" signature="1986:2331" ph="{...}" />
+            <marker date="1516556678616" expanded="true" signature="2545:3178" ph="{...}" />
+            <marker date="1516556678616" expanded="true" signature="3227:4194" ph="{...}" />
+            <marker date="1516556678616" expanded="true" signature="3339:3631" ph="{...}" />
+            <marker date="1516556678616" expanded="true" signature="4235:5009" ph="{...}" />
+            <marker date="1516556678616" expanded="true" signature="4347:4572" ph="{...}" />
+            <marker date="1516556678616" expanded="true" signature="5054:5213" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
