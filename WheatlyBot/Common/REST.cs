@@ -27,6 +27,10 @@ namespace WheatlyBot.Common
 
                 if (response.IsSuccessStatusCode)
                     ret = await response.Content.ReadAsAsync<T>();
+                else
+                {
+                    Logger.Warn($"Error sending GET to {baseURI}/{requestURI}. Response was {response.StatusCode}: {response.ReasonPhrase}.");
+                }
 
             }
             catch (Exception ex)
