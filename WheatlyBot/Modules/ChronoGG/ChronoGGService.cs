@@ -89,6 +89,8 @@ namespace WheatlyBot.Modules.ChronoGG
 
             var diff = Sale.EndDate.ToUniversalTime() - DateTime.UtcNow;
 
+            logger.Info($"Next sale in {diff.Hours} hours {diff.Minutes} minutes. ({diff.TotalSeconds} total seconds)");
+
 #pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
             Task.Run(() => Task.Delay(Sale.EndDate.ToUniversalTime() - DateTime.UtcNow).ContinueWith((_) => { RunSaleNotifcation(); })).ConfigureAwait(false);
 #pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
@@ -98,6 +100,8 @@ namespace WheatlyBot.Modules.ChronoGG
 
         private async Task RunSaleNotifcation()
         {
+            logger.Info("Running sale notification");
+
             await GetSale();
 
             foreach (ulong channelId in AutoSaleChannels.Keys.ToList())
