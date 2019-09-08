@@ -5,7 +5,7 @@ namespace WheatlyBot.Entities.ChronoGG
 {
     public class Shop
     {
-        private IEnumerable<ShopItem> shopItems;
+        private readonly IEnumerable<ShopItem> shopItems;
 
         public Shop(IEnumerable<ShopItem> items)
         {

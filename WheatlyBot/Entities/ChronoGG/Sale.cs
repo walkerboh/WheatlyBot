@@ -6,6 +6,26 @@ namespace WheatlyBot.Entities.ChronoGG
 {
     public class Sale : ChronoGGItem
     {
+        protected bool Equals(Sale other)
+        {
+            return StartDate.Equals(other.StartDate) && EndDate.Equals(other.EndDate);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            return obj.GetType() == this.GetType() && Equals((Sale) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return (StartDate.GetHashCode() * 397) ^ EndDate.GetHashCode();
+            }
+        }
+
         public string Name { get; set; }
         public string Url { get; set; }
 

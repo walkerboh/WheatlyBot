@@ -93,7 +93,7 @@ namespace WheatlyBot.Modules.ChronoGG
             {
                 logger.Warn("Ended sale retrieved.");
             }
-            else
+            else if(!newSale.Equals(Sale))
             {
                 Sale = newSale;
                 logger.Debug("Updated sale.");
