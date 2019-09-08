@@ -1,4 +1,3 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/qnysbaiocgi5erht?svg=true)](https://ci.appveyor.com/project/walkerboh/chronobot)
 # WheatlyBot
 A new Discord bot for gaming deals!
 Prefix: $
