@@ -43,7 +43,7 @@ namespace WheatlyBot
             await client.StartAsync();
 
             var chronoGGService = services.GetService<ChronoGGService>();
-            chronoGGService.StartService();
+            await chronoGGService.StartService();
 
             logger.Debug("Bot running at {0}", DateTime.Now);
 
@@ -62,7 +62,7 @@ namespace WheatlyBot
                 .AddTransient<ChronoGGAPI>()
                 .BuildServiceProvider();
 
-            await commands.AddModulesAsync(Assembly.GetEntryAssembly());
+            await commands.AddModulesAsync(Assembly.GetEntryAssembly(), services);
         }
 
         private async Task MessageReceived(SocketMessage messageParam)
@@ -71,11 +71,11 @@ namespace WheatlyBot
 
             int argPos = 0;
 
-            if (!message.HasCharPrefix('$', ref argPos)) return;
+            if (!message.HasCharPrefix('$', ref argPos) || message.HasMentionPrefix(client.CurrentUser, ref argPos) || message.Author.IsBot) return;
 
-            SocketCommandContext context = new SocketCommandContext(client, message);
+            var context = new SocketCommandContext(client, message);
 
-            IResult result = await commands.ExecuteAsync(context, argPos, services);
+            var result = await commands.ExecuteAsync(context, argPos, services);
             if (!result.IsSuccess)
                 Console.WriteLine(result.ErrorReason);
         }

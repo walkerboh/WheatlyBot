@@ -30,9 +30,9 @@ namespace WheatlyBot.Entities.ChronoGG
             embed.WithTitle($"{Name}")
                 .WithUrl(@"https://www.chrono.gg/shop")
                 .AddField("Description", $"{Description}")
-                .AddInlineField("Cost", $"{Price:n0} Coins")
-                .AddInlineField("Claimed", string.Format("{0:0.00%}", Claimed))
-                .AddInlineField("Platforms", CleanPlatforms(Platforms));
+                .AddField("Cost", $"{Price:n0} Coins", true)
+                .AddField("Claimed", $"{Claimed:0.00%}", true)
+                .AddField("Platforms", CleanPlatforms(Platforms), true);
 
             return embed.Build();
         }

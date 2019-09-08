@@ -49,11 +49,11 @@ namespace WheatlyBot.Entities.ChronoGG
             embed.WithTitle($"{Name}")
                 .WithUrl(UniqueUrl)
                 .WithImageUrl(PromoImage)
-                .AddInlineField("Sale Price", SalePrice)
-                .AddInlineField("Original Price", NormalPrice)
-                .AddInlineField("Discount", Discount)
-                .AddInlineField("Platforms", CleanPlatforms(Platforms))
-                .WithFooter($"Sale ends {EndDate.ToUniversalTime().ToString("M/d/yy H:mm K")}");
+                .AddField("Sale Price", SalePrice, true)
+                .AddField("Original Price", NormalPrice, true)
+                .AddField("Discount", Discount, true)
+                .AddField("Platforms", CleanPlatforms(Platforms), true)
+                .WithFooter($"Sale ends {EndDate.ToUniversalTime():M/d/yy H:mm K}");
 
             return embed.Build();
         }

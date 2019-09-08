@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Timers;
 using WheatlyBot.Entities.ChronoGG;
 using WheatlyBot.Services;
 using Discord.WebSocket;
@@ -26,9 +27,12 @@ namespace WheatlyBot.Modules.ChronoGG
 
         private ILogger logger = LogManager.GetCurrentClassLogger();
 
-        private readonly int[] apiDelay = new int[] { 0, 5, 30, 60, 180, 300 };
+        private readonly int[] apiDelay = { 0, 5, 30, 60, 180, 300 };
 
         private const string DATA_FILE_NAME = "ChronoGGSaleChannels";
+
+        private Timer _saleTimer;
+        private Timer _shopTimer;
 
         public ChronoGGService(DiscordSocketClient client, LocalStorage localStorage, ChronoGGAPI chronoGGAPI)
         {
@@ -49,33 +53,51 @@ namespace WheatlyBot.Modules.ChronoGG
             logger.Info("{0} channel ids loaded for ChronoGGService", channelIds?.Count ?? 0);
         }
 
-        public void StartService()
+        public async Task StartService()
         {
-            Task.Run(SetupSale);
-            Task.Run(UpdateShop);
+            await GetSale();
+            await UpdateShop();
+
+            //Task.Run(SetupSale);
+            _saleTimer = new Timer
+            {
+                AutoReset = true,
+                Interval = 1000 * 60 * 5, // 5 minutes in ms
+            };
+
+            _saleTimer.Elapsed += async (source, args) => await GetSale();
+            _saleTimer.Enabled = true;
+
+            //Task.Run(UpdateShop);
+            _shopTimer = new Timer
+            {
+                AutoReset = true,
+                Interval = 1000 * 60 * 30, // 30 minutes in ms
+            };
+
+            _shopTimer.Elapsed += async (source, args) => await UpdateShop();
+            _shopTimer.Enabled = true;
         }
 
         private async Task GetSale()
         {
             if (IsOldSale(Sale)) Sale = null;
 
-            int delayIndex = 0;
-            Sale newSale = null;
+            Sale newSale = await chronoGGAPI.GetCurrentSaleAsync();
 
-            newSale = await chronoGGAPI.GetCurrentSaleAsync();
-            
-            while (newSale is null || IsOldSale(newSale))
+            if (newSale is null)
             {
-                logger.Warn($"New sale not retrieved. (Old sale found: ${IsOldSale(newSale)}");
-                
-                await Task.Delay(apiDelay[delayIndex] * 1000);
-
-                newSale = await chronoGGAPI.GetCurrentSaleAsync();
-
-                delayIndex = Math.Min(delayIndex + 1, apiDelay.Length);
+                logger.Warn("No sale retrieved.");
             }
-
-            Sale = newSale;
+            else if (IsOldSale(newSale))
+            {
+                logger.Warn("Ended sale retrieved.");
+            }
+            else
+            {
+                Sale = newSale;
+                logger.Debug("Updated sale.");
+            }
 
             bool IsOldSale(Sale sale)
             {
@@ -92,13 +114,17 @@ namespace WheatlyBot.Modules.ChronoGG
             logger.Info($"Next sale in {diff.Hours} hours {diff.Minutes} minutes. ({diff.TotalSeconds} total seconds)");
 
 #pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
-            Task.Run(() => Task.Delay(Sale.EndDate.ToUniversalTime() - DateTime.UtcNow).ContinueWith((_) => { RunSaleNotifcation(); })).ConfigureAwait(false);
+            Task.Run(async () =>
+            {
+                await Task.Delay(Sale.EndDate.ToUniversalTime() - DateTime.UtcNow);
+                RunSaleNotification();
+            }).ConfigureAwait(false);
 #pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
 
             logger.Info("Sale retrieved and notification scheduled.");
         }
 
-        private async Task RunSaleNotifcation()
+        private async Task RunSaleNotification()
         {
             logger.Info("Running sale notification");
 
@@ -112,34 +138,18 @@ namespace WheatlyBot.Modules.ChronoGG
                     await channel.SendMessageAsync(string.Empty, false, Sale.ToEmbed());
             }
 
-#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
-            Task.Run(() => Task.Delay(Sale.EndDate.ToUniversalTime() - DateTime.UtcNow).ContinueWith((_) => { RunSaleNotifcation(); })).ConfigureAwait(false);
-#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
-
-            logger.Info("Sale retrieved and next notification scheduled.");
-
             await WriteChannelIds();
         }
 
         private async Task UpdateShop()
         {
-            int delayIndex = 0;
-            Shop newShop = null;
+            var newShop = await chronoGGAPI.GetShopAsync();
 
-            while (newShop is null)
+            if (newShop != null)
             {
-                await Task.Delay(apiDelay[delayIndex] * 1000);
-
-                newShop = await chronoGGAPI.GetShopAsync();
-
-                delayIndex = Math.Min(delayIndex + 1, apiDelay.Length);
+                logger.Debug("Updated shop.");
+                Shop = newShop;
             }
-
-            Shop = newShop;
-
-#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
-            Task.Run(() => Task.Delay(new TimeSpan(6, 0, 0)).ContinueWith((_) => UpdateShop())).ConfigureAwait(false);
-#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
         }
 
         public async Task WriteChannelIds()
