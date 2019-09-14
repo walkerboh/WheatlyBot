@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Threading.Tasks;
 using WheatlyBot.Common;
 using Discord.Commands;
@@ -20,12 +21,14 @@ namespace WheatlyBot.Modules.ChronoGG
         }
 
         [WheatlyCommand]
+        [Alias("s")]
         public async Task Sale()
         {
             await ReplyAsync(ChronoGGService.Sale is null ? "The current sale has not yet been retrieved. Please try again later." : string.Empty, false, ChronoGGService.Sale?.ToEmbed());
         }
 
         [WheatlyCommand]
+        [Alias("as")]
         [RequireUserPermission(Discord.GuildPermission.ManageGuild | Discord.GuildPermission.ManageChannels)]
         public async Task AutoSale()
         {
