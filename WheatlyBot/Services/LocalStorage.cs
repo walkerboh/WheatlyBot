@@ -29,10 +29,7 @@ namespace WheatlyBot.Services
         {
             string filePath = GetFilePath(fileName);
 
-            if (File.Exists(filePath))
-                return JsonConvert.DeserializeObject<T>(await File.ReadAllTextAsync(filePath));
-            else
-                return default(T);
+            return File.Exists(filePath) ? JsonConvert.DeserializeObject<T>(await File.ReadAllTextAsync(filePath)) : default(T);
         }
 
         private string GetFilePath(string fileName)

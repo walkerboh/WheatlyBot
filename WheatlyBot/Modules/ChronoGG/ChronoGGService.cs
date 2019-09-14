@@ -81,8 +81,6 @@ namespace WheatlyBot.Modules.ChronoGG
 
         private async Task GetSale()
         {
-            if (IsOldSale(Sale)) Sale = null;
-
             Sale newSale = await chronoGGAPI.GetCurrentSaleAsync();
 
             if (newSale is null)
@@ -95,8 +93,14 @@ namespace WheatlyBot.Modules.ChronoGG
             }
             else if(!newSale.Equals(Sale))
             {
+                var oldSale = Sale;
                 Sale = newSale;
                 logger.Debug("Updated sale.");
+
+                if (!(oldSale is null))
+                {
+                    await RunSaleNotification();
+                }
             }
 
             bool IsOldSale(Sale sale)
@@ -127,8 +131,6 @@ namespace WheatlyBot.Modules.ChronoGG
         private async Task RunSaleNotification()
         {
             logger.Info("Running sale notification");
-
-            await GetSale();
 
             foreach (ulong channelId in AutoSaleChannels.Keys.ToList())
             {
