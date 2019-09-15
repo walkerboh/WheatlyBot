@@ -18,6 +18,5 @@ Prefix: $
 Actual integrations to be determined
 + [BoardGameGeek](https://boardgamegeek.com)
 + Steam
-+ [Meh](https://meh.com/)
 
 This bot is still in early development and is not yet public. A public release is planned after the ChronoGG commands are mostly stabilized.
