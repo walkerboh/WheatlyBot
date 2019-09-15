@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
-using WheatlyBot.Common;
 using WheatlyBot.Entities.ChronoGG;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -26,7 +26,12 @@ namespace WheatlyBot.Services
 
             try
             {
-                sale = await REST.Get<Sale>(_settings.SaleUri);
+                using(var client = new HttpClient())
+                {
+                    var response = await client.GetAsync(_settings.SaleUri);
+                    response.EnsureSuccessStatusCode();
+                    sale = await response.Content.ReadAsAsync<Sale>();
+                }
             }
             catch (Exception ex)
             {
@@ -42,7 +47,15 @@ namespace WheatlyBot.Services
 
             try
             {
-                var items = await REST.Get<IEnumerable<ShopItem>>(_settings.ShopUri);
+                IEnumerable<ShopItem> items;
+
+                using(var client = new HttpClient())
+                {
+                    var response = await client.GetAsync(_settings.ShopUri);
+                    response.EnsureSuccessStatusCode();
+                    items = await response.Content.ReadAsAsync<IEnumerable<ShopItem>>();
+                }
+
                 shop = new Shop(items);
             }
             catch (Exception ex)
