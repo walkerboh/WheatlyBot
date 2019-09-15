@@ -7,11 +7,14 @@ using System.Timers;
 using WheatlyBot.Entities.ChronoGG;
 using WheatlyBot.Services;
 using Discord.WebSocket;
+using Microsoft.Extensions.Options;
 using NLog;
+using WheatlyBot.Modules.Interfaces;
+using WheatlyBot.Settings;
 
 namespace WheatlyBot.Modules.ChronoGG
 {
-    public class ChronoGGService
+    public class ChronoGgService : IDisposable, INotificationService
     {
         public Sale Sale { get; private set; }
 
@@ -19,28 +22,29 @@ namespace WheatlyBot.Modules.ChronoGG
 
         public ConcurrentDictionary<ulong, bool> AutoSaleChannels { get; } = new ConcurrentDictionary<ulong, bool>();
 
-        private DiscordSocketClient client;
+        private readonly DiscordSocketClient _client;
 
-        private LocalStorage localStorage;
+        private readonly LocalStorage _localStorage;
 
-        private ChronoGGAPI chronoGGAPI;
+        private readonly ChronoGGAPI _chronoGgApi;
 
-        private ILogger logger = LogManager.GetCurrentClassLogger();
+        private readonly ILogger _logger = LogManager.GetCurrentClassLogger();
 
-        private readonly int[] apiDelay = { 0, 5, 30, 60, 180, 300 };
+        private const string DataFileName = "ChronoGGSaleChannels";
 
-        private const string DATA_FILE_NAME = "ChronoGGSaleChannels";
+        private readonly ChronoGgSettings _settings;
 
         private Timer _saleTimer;
         private Timer _shopTimer;
 
-        public ChronoGGService(DiscordSocketClient client, LocalStorage localStorage, ChronoGGAPI chronoGGAPI)
+        public ChronoGgService(DiscordSocketClient client, LocalStorage localStorage, ChronoGGAPI chronoGgApi, IOptions<ChronoGgSettings> settings)
         {
-            this.client = client;
-            this.localStorage = localStorage;
-            this.chronoGGAPI = chronoGGAPI;
+            _client = client;
+            _localStorage = localStorage;
+            _chronoGgApi = chronoGgApi;
+            _settings = settings.Value;
 
-            List<ulong> channelIds = localStorage.ReadData<List<ulong>>(DATA_FILE_NAME).Result;
+            List<ulong> channelIds = localStorage.ReadData<List<ulong>>(DataFileName).Result;
 
             if (channelIds != null && channelIds.Any())
             {
@@ -50,7 +54,7 @@ namespace WheatlyBot.Modules.ChronoGG
                 }
             }
 
-            logger.Info("{0} channel ids loaded for ChronoGGService", channelIds?.Count ?? 0);
+            _logger.Info("{0} channel ids loaded for ChronoGGService", channelIds?.Count ?? 0);
         }
 
         public async Task StartService()
@@ -58,21 +62,19 @@ namespace WheatlyBot.Modules.ChronoGG
             await GetSale();
             await UpdateShop();
 
-            //Task.Run(SetupSale);
             _saleTimer = new Timer
             {
                 AutoReset = true,
-                Interval = 1000 * 60 * 5, // 5 minutes in ms
+                Interval = _settings.SaleDelay
             };
 
             _saleTimer.Elapsed += async (source, args) => await GetSale();
             _saleTimer.Enabled = true;
 
-            //Task.Run(UpdateShop);
             _shopTimer = new Timer
             {
                 AutoReset = true,
-                Interval = 1000 * 60 * 30, // 30 minutes in ms
+                Interval = _settings.ShopDelay
             };
 
             _shopTimer.Elapsed += async (source, args) => await UpdateShop();
@@ -81,21 +83,21 @@ namespace WheatlyBot.Modules.ChronoGG
 
         private async Task GetSale()
         {
-            Sale newSale = await chronoGGAPI.GetCurrentSaleAsync();
+            Sale newSale = await _chronoGgApi.GetCurrentSaleAsync();
 
             if (newSale is null)
             {
-                logger.Warn("No sale retrieved.");
+                _logger.Warn("No sale retrieved.");
             }
             else if (IsOldSale(newSale))
             {
-                logger.Warn("Ended sale retrieved.");
+                _logger.Warn("Ended sale retrieved.");
             }
             else if(!newSale.Equals(Sale))
             {
                 var oldSale = Sale;
                 Sale = newSale;
-                logger.Debug("Updated sale.");
+                _logger.Debug("Updated sale.");
 
                 if (!(oldSale is null))
                 {
@@ -109,32 +111,13 @@ namespace WheatlyBot.Modules.ChronoGG
             }
         }
 
-        private async Task SetupSale()
-        {
-            await GetSale();
-
-            var diff = Sale.EndDate.ToUniversalTime() - DateTime.UtcNow;
-
-            logger.Info($"Next sale in {diff.Hours} hours {diff.Minutes} minutes. ({diff.TotalSeconds} total seconds)");
-
-#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
-            Task.Run(async () =>
-            {
-                await Task.Delay(Sale.EndDate.ToUniversalTime() - DateTime.UtcNow);
-                RunSaleNotification();
-            }).ConfigureAwait(false);
-#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
-
-            logger.Info("Sale retrieved and notification scheduled.");
-        }
-
         private async Task RunSaleNotification()
         {
-            logger.Info("Running sale notification");
+            _logger.Info("Running sale notification");
 
             foreach (ulong channelId in AutoSaleChannels.Keys.ToList())
             {
-                if (!(client.GetChannel(channelId) is ISocketMessageChannel channel))
+                if (!(_client.GetChannel(channelId) is ISocketMessageChannel channel))
                     AutoSaleChannels.Remove(channelId, out bool _);
                 else
                     await channel.SendMessageAsync(string.Empty, false, Sale.ToEmbed());
@@ -145,11 +128,11 @@ namespace WheatlyBot.Modules.ChronoGG
 
         private async Task UpdateShop()
         {
-            var newShop = await chronoGGAPI.GetShopAsync();
+            var newShop = await _chronoGgApi.GetShopAsync();
 
             if (newShop != null)
             {
-                logger.Debug("Updated shop.");
+                _logger.Debug("Updated shop.");
                 Shop = newShop;
             }
         }
@@ -157,7 +140,14 @@ namespace WheatlyBot.Modules.ChronoGG
         public async Task WriteChannelIds()
         {
             List<ulong> channelIds = AutoSaleChannels.Keys.ToList();
-            await localStorage.WriteData(channelIds, DATA_FILE_NAME);
+            await _localStorage.WriteData(channelIds, DataFileName);
+        }
+
+        public void Dispose()
+        {
+            _client?.Dispose();
+            _saleTimer?.Dispose();
+            _shopTimer?.Dispose();
         }
     }
 }

@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using WheatlyBot.Common;
 using WheatlyBot.Entities.ChronoGG;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using WheatlyBot.Settings;
 
 namespace WheatlyBot.Services
 {
@@ -12,9 +13,12 @@ namespace WheatlyBot.Services
     {
         public ILogger<ChronoGGAPI> Logger { get; set; }
 
-        private const string SaleURI = @"https://api.chrono.gg/sale";
+        private readonly ChronoGgSettings _settings;
 
-        private const string ShopURI = @"https://api.chrono.gg/shop";
+        public ChronoGGAPI(IOptions<ChronoGgSettings> settings)
+        {
+            _settings = settings.Value;
+        }
 
         public async Task<Sale> GetCurrentSaleAsync()
         {
@@ -22,7 +26,7 @@ namespace WheatlyBot.Services
 
             try
             {
-                sale = await REST.Get<Sale>(SaleURI);
+                sale = await REST.Get<Sale>(_settings.SaleUri);
             }
             catch (Exception ex)
             {
@@ -38,7 +42,7 @@ namespace WheatlyBot.Services
 
             try
             {
-                IEnumerable<ShopItem> items = await REST.Get<IEnumerable<ShopItem>>(ShopURI);
+                IEnumerable<ShopItem> items = await REST.Get<IEnumerable<ShopItem>>(_settings.ShopUri);
                 shop = new Shop(items);
             }
             catch (Exception ex)

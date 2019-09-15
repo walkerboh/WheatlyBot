@@ -3,66 +3,80 @@ using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
 using WheatlyBot.Common.Setup;
-using WheatlyBot.Entities;
 using WheatlyBot.Extensions;
 using WheatlyBot.Modules.ChronoGG;
 using WheatlyBot.Services;
 using Discord.Commands;
 using Discord.WebSocket;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json;
 using NLog;
+using WheatlyBot.Modules.Meh;
+using WheatlyBot.Settings;
 
 namespace WheatlyBot
 {
     internal class Program
     {
-        private static void Main(string[] args) => new Program().MainAsync().GetAwaiter().GetResult();
+        private static void Main() => new Program().MainAsync().GetAwaiter().GetResult();
 
-        private DiscordSocketClient client;
-        private CommandService commands;
-        private IServiceProvider services;
+        private DiscordSocketClient _client;
+        private CommandService _commands;
+        private IServiceProvider _services;
 
-        private Logger logger;
+        private Logger _logger;
 
         private async Task MainAsync()
         {
             LoggerSetup.SetupLog();
 
-            client = new DiscordSocketClient();
-            commands = new CommandService();
+            _client = new DiscordSocketClient();
+            _commands = new CommandService();
 
-            await InstallCommandsAsync();
+            var configBuilder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", false, true);
+            var configuration = configBuilder.Build();
 
-            logger = LogManager.GetCurrentClassLogger();
+            await InstallCommandsAsync(configuration);
 
-            client.Log += Log;
+            _logger = LogManager.GetCurrentClassLogger();
 
-            string token = JsonConvert.DeserializeObject<Credentials>(File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), "Credentials.json"))).Token;
-            await client.LoginAsync(Discord.TokenType.Bot, token);
-            await client.StartAsync();
+            _client.Log += Log;
 
-            var chronoGGService = services.GetService<ChronoGGService>();
-            await chronoGGService.StartService();
+            DiscordSettings discordSettings = new DiscordSettings();
+            configuration.Bind("Discord", discordSettings);
 
-            logger.Debug("Bot running at {0}", DateTime.Now);
+            await _client.LoginAsync(Discord.TokenType.Bot, discordSettings.Token);
+            await _client.StartAsync();
+
+            var chronoGgService = _services.GetService<ChronoGgService>();
+            await chronoGgService.StartService();
+
+            var mehService = _services.GetRequiredService<MehService>();
+            await mehService.StartService();
+
+            _logger.Debug("Bot running at {0}", DateTime.Now);
 
             await Task.Delay(-1);
         }
 
-        private async Task InstallCommandsAsync()
+        private async Task InstallCommandsAsync(IConfigurationRoot configuration)
         {
-            client.MessageReceived += MessageReceived;
+            _client.MessageReceived += MessageReceived;
 
-            services = new ServiceCollection()
-                .AddSingleton(client)
-                .AddSingleton(commands)
-                .AddSingleton<ChronoGGService>()
+            _services = new ServiceCollection()
+                .Configure<ChronoGgSettings>(configuration.GetSection("ChronoGg"))
+                .Configure<MehSettings>(configuration.GetSection("Meh"))
+                .AddSingleton(_client)
+                .AddSingleton(_commands)
+                .AddSingleton<ChronoGgService>()
                 .AddTransient<LocalStorage>()
                 .AddTransient<ChronoGGAPI>()
+                .AddTransient<MehApi>()
+                .AddSingleton<MehService>()
                 .BuildServiceProvider();
 
-            await commands.AddModulesAsync(Assembly.GetEntryAssembly(), services);
+            await _commands.AddModulesAsync(Assembly.GetEntryAssembly(), _services);
         }
 
         private async Task MessageReceived(SocketMessage messageParam)
@@ -71,18 +85,18 @@ namespace WheatlyBot
 
             int argPos = 0;
 
-            if (!message.HasCharPrefix('$', ref argPos) || message.HasMentionPrefix(client.CurrentUser, ref argPos) || message.Author.IsBot) return;
+            if (!message.HasCharPrefix('$', ref argPos) || message.HasMentionPrefix(_client.CurrentUser, ref argPos) || message.Author.IsBot) return;
 
-            var context = new SocketCommandContext(client, message);
+            var context = new SocketCommandContext(_client, message);
 
-            var result = await commands.ExecuteAsync(context, argPos, services);
+            var result = await _commands.ExecuteAsync(context, argPos, _services);
             if (!result.IsSuccess)
                 Console.WriteLine(result.ErrorReason);
         }
 
         private Task Log(Discord.LogMessage logMessage)
         {
-            logger.Log(logMessage.Severity.ToNLogLevel(), logMessage.Exception, logMessage.Message);
+            _logger.Log(logMessage.Severity.ToNLogLevel(), logMessage.Exception, logMessage.Message);
             return Task.CompletedTask;
         }
     }

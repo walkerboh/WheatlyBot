@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections;
 using System.Threading.Tasks;
 using WheatlyBot.Common;
 using Discord.Commands;
-using NLog;
 using WheatlyBot.Entities.ChronoGG;
 
 namespace WheatlyBot.Modules.ChronoGG
@@ -11,11 +9,9 @@ namespace WheatlyBot.Modules.ChronoGG
     [Group("chrono")]
     public class ChronoGG : ModuleBase<SocketCommandContext>
     {
-        private ChronoGGService ChronoGGService { get; set; }
+        private ChronoGgService ChronoGGService { get; set; }
 
-        private Logger Logger = LogManager.GetCurrentClassLogger();
-
-        public ChronoGG(ChronoGGService chronoGGService)
+        public ChronoGG(ChronoGgService chronoGGService)
         {
             ChronoGGService = chronoGGService;
         }
