@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace WheatlyBot.Entities.ChronoGG
 {
-    public class Sale : ChronoGGItem
+    public class Sale : ChronoGgItem
     {
         protected bool Equals(Sale other)
         {
@@ -65,7 +65,7 @@ namespace WheatlyBot.Entities.ChronoGG
 
         public Embed ToEmbed()
         {
-            EmbedBuilder embed = new EmbedBuilder();
+            var embed = new EmbedBuilder();
             embed.WithTitle($"{Name}")
                 .WithUrl(UniqueUrl)
                 .WithImageUrl(PromoImage)

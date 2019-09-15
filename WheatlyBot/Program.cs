@@ -43,7 +43,7 @@ namespace WheatlyBot
 
             _client.Log += Log;
 
-            DiscordSettings discordSettings = new DiscordSettings();
+            var discordSettings = new DiscordSettings();
             configuration.Bind("Discord", discordSettings);
 
             await _client.LoginAsync(Discord.TokenType.Bot, discordSettings.Token);
@@ -71,7 +71,7 @@ namespace WheatlyBot
                 .AddSingleton(_commands)
                 .AddSingleton<ChronoGgService>()
                 .AddTransient<LocalStorage>()
-                .AddTransient<ChronoGGAPI>()
+                .AddTransient<ChronoGgApi>()
                 .AddTransient<MehApi>()
                 .AddSingleton<MehService>()
                 .BuildServiceProvider();
@@ -83,7 +83,7 @@ namespace WheatlyBot
         {
             if (!(messageParam is SocketUserMessage message)) return;
 
-            int argPos = 0;
+            var argPos = 0;
 
             if (!message.HasCharPrefix('$', ref argPos) || message.HasMentionPrefix(_client.CurrentUser, ref argPos) || message.Author.IsBot) return;
 

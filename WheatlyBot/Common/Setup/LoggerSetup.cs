@@ -10,14 +10,14 @@ namespace WheatlyBot.Common.Setup
     {
         public static void SetupLog()
         {
-            LoggingConfiguration configuration = new LoggingConfiguration();
+            var configuration = new LoggingConfiguration();
 
-            ConsoleTarget console = new ConsoleTarget()
+            var console = new ConsoleTarget
             {
                 Layout = @"${date}|${level:uppercase=true}|${message} ${exception}|${logger}|${all-event-properties}"
             };
 
-            FileTarget file = new FileTarget()
+            var file = new FileTarget
             {
                 FileName = Path.Combine(Directory.GetCurrentDirectory(), "logs", "log.log"),
                 Layout = @"${date}|${level:uppercase=true}|${message} ${exception}|${logger}|${all-event-properties}",

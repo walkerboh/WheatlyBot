@@ -9,13 +9,13 @@ using WheatlyBot.Settings;
 
 namespace WheatlyBot.Services
 {
-    public class ChronoGGAPI
+    public class ChronoGgApi
     {
-        public ILogger<ChronoGGAPI> Logger { get; set; }
+        public ILogger<ChronoGgApi> Logger { get; set; }
 
         private readonly ChronoGgSettings _settings;
 
-        public ChronoGGAPI(IOptions<ChronoGgSettings> settings)
+        public ChronoGgApi(IOptions<ChronoGgSettings> settings)
         {
             _settings = settings.Value;
         }
@@ -30,7 +30,7 @@ namespace WheatlyBot.Services
             }
             catch (Exception ex)
             {
-                Logger.LogError(ex, "Error in ChronoGGAPI.GetCurrentSaleAsync");
+                Logger.LogError(ex, "Error in ChronoGgApi.GetCurrentSaleAsync");
             }
 
             return sale;
@@ -42,12 +42,12 @@ namespace WheatlyBot.Services
 
             try
             {
-                IEnumerable<ShopItem> items = await REST.Get<IEnumerable<ShopItem>>(_settings.ShopUri);
+                var items = await REST.Get<IEnumerable<ShopItem>>(_settings.ShopUri);
                 shop = new Shop(items);
             }
             catch (Exception ex)
             {
-                Logger.LogError(ex, "Error in ChronoGGAPI.GetShopAsync");
+                Logger.LogError(ex, "Error in ChronoGgApi.GetShopAsync");
             }
 
             return shop;

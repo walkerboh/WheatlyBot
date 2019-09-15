@@ -26,7 +26,7 @@ namespace WheatlyBot.Modules.ChronoGG
 
         private readonly LocalStorage _localStorage;
 
-        private readonly ChronoGGAPI _chronoGgApi;
+        private readonly ChronoGgApi _chronoGgApi;
 
         private readonly ILogger _logger = LogManager.GetCurrentClassLogger();
 
@@ -37,14 +37,14 @@ namespace WheatlyBot.Modules.ChronoGG
         private Timer _saleTimer;
         private Timer _shopTimer;
 
-        public ChronoGgService(DiscordSocketClient client, LocalStorage localStorage, ChronoGGAPI chronoGgApi, IOptions<ChronoGgSettings> settings)
+        public ChronoGgService(DiscordSocketClient client, LocalStorage localStorage, ChronoGgApi chronoGgApi, IOptions<ChronoGgSettings> settings)
         {
             _client = client;
             _localStorage = localStorage;
             _chronoGgApi = chronoGgApi;
             _settings = settings.Value;
 
-            List<ulong> channelIds = localStorage.ReadData<List<ulong>>(DataFileName).Result;
+            var channelIds = localStorage.ReadData<List<ulong>>(DataFileName).Result;
 
             if (channelIds != null && channelIds.Any())
             {
@@ -83,7 +83,7 @@ namespace WheatlyBot.Modules.ChronoGG
 
         private async Task GetSale()
         {
-            Sale newSale = await _chronoGgApi.GetCurrentSaleAsync();
+            var newSale = await _chronoGgApi.GetCurrentSaleAsync();
 
             if (newSale is null)
             {
@@ -139,7 +139,7 @@ namespace WheatlyBot.Modules.ChronoGG
 
         public async Task WriteChannelIds()
         {
-            List<ulong> channelIds = AutoSaleChannels.Keys.ToList();
+            var channelIds = AutoSaleChannels.Keys.ToList();
             await _localStorage.WriteData(channelIds, DataFileName);
         }
 

@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Discord;
 using Newtonsoft.Json;
 
 namespace WheatlyBot.Entities.ChronoGG
 {
-    public class ShopItem : ChronoGGItem
+    public class ShopItem : ChronoGgItem
     {
         [JsonProperty("_id")]
         public string Id { get; set; }
@@ -26,7 +24,7 @@ namespace WheatlyBot.Entities.ChronoGG
 
         public Embed ToEmbed()
         {
-            EmbedBuilder embed = new EmbedBuilder();
+            var embed = new EmbedBuilder();
             embed.WithTitle($"{Name}")
                 .WithUrl(@"https://www.chrono.gg/shop")
                 .AddField("Description", $"{Description}")

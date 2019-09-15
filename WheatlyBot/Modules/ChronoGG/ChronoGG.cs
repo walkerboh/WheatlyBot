@@ -2,25 +2,24 @@
 using System.Threading.Tasks;
 using WheatlyBot.Common;
 using Discord.Commands;
-using WheatlyBot.Entities.ChronoGG;
 
 namespace WheatlyBot.Modules.ChronoGG
 {
     [Group("chrono")]
-    public class ChronoGG : ModuleBase<SocketCommandContext>
+    public class ChronoGg : ModuleBase<SocketCommandContext>
     {
-        private ChronoGgService ChronoGGService { get; set; }
+        private readonly ChronoGgService _chronoGgService;
 
-        public ChronoGG(ChronoGgService chronoGGService)
+        public ChronoGg(ChronoGgService chronoGgService)
         {
-            ChronoGGService = chronoGGService;
+            _chronoGgService = chronoGgService;
         }
 
         [WheatlyCommand]
         [Alias("s")]
         public async Task Sale()
         {
-            await ReplyAsync(ChronoGGService.Sale is null ? "The current sale has not yet been retrieved. Please try again later." : string.Empty, false, ChronoGGService.Sale?.ToEmbed());
+            await ReplyAsync(_chronoGgService.Sale is null ? "The current sale has not yet been retrieved. Please try again later." : string.Empty, false, _chronoGgService.Sale?.ToEmbed());
         }
 
         [WheatlyCommand]
@@ -28,28 +27,28 @@ namespace WheatlyBot.Modules.ChronoGG
         [RequireUserPermission(Discord.GuildPermission.ManageGuild | Discord.GuildPermission.ManageChannels)]
         public async Task AutoSale()
         {
-            ulong channelId = Context.Channel.Id;
+            var channelId = Context.Channel.Id;
 
-            if (ChronoGGService.AutoSaleChannels.ContainsKey(channelId))
+            if (_chronoGgService.AutoSaleChannels.ContainsKey(channelId))
             {
-                ChronoGGService.AutoSaleChannels.TryRemove(channelId, out bool _);
+                _chronoGgService.AutoSaleChannels.TryRemove(channelId, out bool _);
                 await ReplyAsync("Channel removed from automatic sale notifications.");
             }
             else
             {
-                ChronoGGService.AutoSaleChannels.TryAdd(channelId, true);
+                _chronoGgService.AutoSaleChannels.TryAdd(channelId, true);
                 await ReplyAsync("Channel added to automatic sale notifications.");
             }
 
-            await ChronoGGService.WriteChannelIds();
+            await _chronoGgService.WriteChannelIds();
         }
 
         [WheatlyCommand]
         public async Task AutoStatus()
         {
-            ulong channelId = Context.Channel.Id;
+            var channelId = Context.Channel.Id;
 
-            if (ChronoGGService.AutoSaleChannels.ContainsKey(channelId))
+            if (_chronoGgService.AutoSaleChannels.ContainsKey(channelId))
             {
                 await ReplyAsync("Channel is receiving sale notifications.");
             }
@@ -62,16 +61,16 @@ namespace WheatlyBot.Modules.ChronoGG
         [WheatlyCommand]
         public async Task Shop(int index = 0)
         {
-            if (ChronoGGService.Shop is null)
+            if (_chronoGgService.Shop is null)
                 await ReplyAsync("The shop has not been loaded. Please try again later.");
             else if (index == 0)
-                await ReplyAsync(string.Join(Environment.NewLine + Environment.NewLine, ChronoGGService.Shop.CurrentItems.GetItemList()));
+                await ReplyAsync(string.Join(Environment.NewLine + Environment.NewLine, _chronoGgService.Shop.CurrentItems.GetItemList()));
             else
             {
-                ShopItem item = ChronoGGService.Shop.CurrentItems.GetShopItemByDisplayIndex(index);
+                var item = _chronoGgService.Shop.CurrentItems.GetShopItemByDisplayIndex(index);
 
                 if (item != null)
-                    await ReplyAsync(string.Empty, false, ChronoGGService.Shop.CurrentItems.GetShopItemByDisplayIndex(index).ToEmbed());
+                    await ReplyAsync(string.Empty, false, _chronoGgService.Shop.CurrentItems.GetShopItemByDisplayIndex(index).ToEmbed());
                 else
                     await ReplyAsync("Invalid shop item ID.");
             }

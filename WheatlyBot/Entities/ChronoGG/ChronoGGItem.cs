@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace WheatlyBot.Entities.ChronoGG
 {
-    public abstract class ChronoGGItem
+    public abstract class ChronoGgItem
     {
         protected string CleanPlatforms(string[] platforms)
-        {
-            List<string> cleanedStrings = new List<string>();
+        { 
+            var cleanedStrings = new List<string>();
 
             foreach (string platform in platforms)
             {
@@ -22,10 +21,12 @@ namespace WheatlyBot.Entities.ChronoGG
                     case "linux":
                         cleanedStrings.Add("Linux");
                         break;
+                    default:
+                        break;
                 }
             }
 
-            return String.Join(", ", cleanedStrings);
+            return string.Join(", ", cleanedStrings);
         }
     }
 }

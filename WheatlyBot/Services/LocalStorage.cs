@@ -10,31 +10,31 @@ namespace WheatlyBot.Services
     /// </summary>
     public class LocalStorage
     {
-        private readonly string dataFolder = Path.Combine(Directory.GetCurrentDirectory(), "Data");
+        private readonly string _dataFolder = Path.Combine(Directory.GetCurrentDirectory(), "Data");
 
         public LocalStorage()
         {
-            if (!Directory.Exists(dataFolder))
-                Directory.CreateDirectory(dataFolder);
+            if (!Directory.Exists(_dataFolder))
+                Directory.CreateDirectory(_dataFolder);
         }
 
         public async Task WriteData<T>(T data, string fileName)
         {
-            string filePath = GetFilePath(fileName);
+            var filePath = GetFilePath(fileName);
 
             await File.WriteAllTextAsync(filePath, JsonConvert.SerializeObject(data));
         }
 
         public async Task<T> ReadData<T>(string fileName)
         {
-            string filePath = GetFilePath(fileName);
+            var filePath = GetFilePath(fileName);
 
             return File.Exists(filePath) ? JsonConvert.DeserializeObject<T>(await File.ReadAllTextAsync(filePath)) : default(T);
         }
 
         private string GetFilePath(string fileName)
         {
-            return string.Concat(Path.Combine(dataFolder, fileName), ".json");
+            return string.Concat(Path.Combine(_dataFolder, fileName), ".json");
         }
     }
 }

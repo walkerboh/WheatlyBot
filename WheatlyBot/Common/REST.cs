@@ -7,35 +7,36 @@ namespace WheatlyBot.Common
 {
     public static class REST
     {
-        private static Logger Logger = LogManager.GetCurrentClassLogger();
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-        public static async Task<T> Get<T>(string baseURI, string requestURI = "")
+        public static async Task<T> Get<T>(string baseUri, string requestUri = "")
         {
-            T ret = default(T);
+            T ret = default;
 
-            HttpClient client = new HttpClient
+            using (var client = new HttpClient())
             {
-                BaseAddress = new Uri(baseURI)
-            };
+                client.BaseAddress = new Uri(baseUri);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(
+                    new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-
-            try
-            {
-                HttpResponseMessage response = await client.GetAsync(requestURI);
-
-                if (response.IsSuccessStatusCode)
-                    ret = await response.Content.ReadAsAsync<T>();
-                else
+                try
                 {
-                    Logger.Warn($"Error sending GET to {baseURI}/{requestURI}. Response was {response.StatusCode}: {response.ReasonPhrase}.");
-                }
+                    var response = await client.GetAsync(requestUri);
 
-            }
-            catch (Exception ex)
-            {
-                Logger.Error(ex, "Error in REST.Get<T>");
+                    if (response.IsSuccessStatusCode)
+                        ret = await response.Content.ReadAsAsync<T>();
+                    else
+                    {
+                        Logger.Warn(
+                            $"Error sending GET to {baseUri}/{requestUri}. Response was {response.StatusCode}: {response.ReasonPhrase}.");
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex, "Error in REST.Get<T>");
+                }
             }
 
             return ret;
