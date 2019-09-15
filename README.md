@@ -9,6 +9,10 @@ Prefix: $
   + $chrono autostatus - Displays the current autosale status.
 + [Chrono.gg](https://www.chrono.gg) Shop API
   + $chrono shop (n) - Displays all the items in the coin shop. If supplied a number, will display the details of that item from the list.
++ [Meh](https://meh.com) API
+  + $meh deal - Shows the current deal
+  + $meh autodeal - Toggles showing new deals in the channel.
+  + $meh autostatus - Displays the current autodeal status.
   
 ## Planned APIs
 Actual integrations to be determined
